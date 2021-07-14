@@ -1,0 +1,48 @@
+ref_image: ref_sample/ref.tiff
+input_path: samples/
+
+rbc:
+  red_channel_mean: 170
+  red_ratio: 0.41
+  blue_channel_std_dev: 20
+  rel_border_len: 0.03
+
+nuclei:
+  red_blue_channel_diff: -8.39
+  red_ratio: 0.33
+  len_2_width_ratio: 3
+
+stroma:
+  red_ratio: 0.355
+  red_blue_channel_diff: 4
+  red_channel_std_dev: 8
+  gauss_disc: -5
+
+growing:
+  red_ratio: 0.355
+  Red_ratio: 0.330
+  del_red: 0.005
+
+lumen:
+  rel_border_len: 0.6
+  area: 450
+  compactness: 1.6
+  elliptic_fit: 0.83
+
+cytoplasm:
+  red_mean: 195
+  green_mean: 180
+  blue_mean: 210
+  len_2_width_ratio: 3
+
+stroma_nuclei:
+  len_2_width_ratio: 2.7
+
+apoptotic_nuclei:
+  area: 115
+  red_mean: 120
+  green_mean: 100
+  blue_mean: 145
+
+nucleoli:
+  green_mean: 27
