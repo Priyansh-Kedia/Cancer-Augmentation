@@ -289,10 +289,10 @@ def compute_coords(image,
 
 if __name__ == '__main__':
 
-    input_path = '/home/priyansh-kedia/Documents/MachineLearning/Cancer-Augmentation/train_images/'
-    mask_path = '/home/priyansh-kedia/Documents/MachineLearning/Cancer-Augmentation/train_label_masks/'
+    input_path = 'train_images/'
+    mask_path = 'train_label_masks/'
     train_list = pd.read_csv('train.csv')
-    output_path = '/home/priyansh-kedia/Documents/MachineLearning/Cancer-Augmentation/images/'
+    output_path = 'images/'
 
     patch_size = 512
 
@@ -304,8 +304,8 @@ if __name__ == '__main__':
     for gl_sc in unique:
         p = train_list[train_list['gleason_score'] == gl_sc].sample(n=1)#(n=10)
 
-        input_path = '/home/priyansh-kedia/Documents/MachineLearning/Cancer-Augmentation/train_images/'
-        mask_path = '/home/priyansh-kedia/Documents/MachineLearning/Cancer-Augmentation/train_label_masks/'
+        input_path = 'train_images/'
+        mask_path = 'train_label_masks/'
 
         if not os.path.exists(str(gl_sc)):
             os.makedirs("images/{}".format(str(gl_sc)))
@@ -361,9 +361,10 @@ if __name__ == '__main__':
                     print(start_point, end_point)
 
     for folder in unique:
-        mask_path = '{}/'.format(folder)
+        mask_path = '{}/{}/'.format("images", folder)
 
         files = []
+        print("mask path is {}".format(mask_path))
         for f in listdir(mask_path):
             if isfile(join(mask_path, f)) and len(f.split('_')) == 3:
                 files.append(f.split('.')[0])
