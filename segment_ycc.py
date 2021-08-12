@@ -30,6 +30,10 @@ NUCLEUS_HIGH_RANGE = np.array([NUCLEUS_RED + 70, NUCLEUS_GREEN + 80, NUCLEUS_BLU
 
 
 def apply_mask(imageYCC, image):
+    cv.imshow("image1", imageYCC)
+    imageYCC = cv.dilate(imageYCC, kernel = (5,5), iterations = 1)
+    imageYCC = cv.dilate(imageYCC, kernel = (5,5), iterations = 1)
+    cv.imshow("image", imageYCC)
     LUMEN_MASK = cv.inRange(imageYCC, LUMEN_LOW_RANGE, LUMEN_HIGH_RANGE)
     CYTOPLASM_MASK = cv.inRange(imageYCC, CYTOPLASM_LOW_RANGE, CYTOPLASM_HIGH_RANGE)
     NUCLEUS_MASK = cv.inRange(imageYCC, NUCLEUS_LOW_RANGE, NUCLEUS_HIGH_RANGE)
@@ -37,16 +41,16 @@ def apply_mask(imageYCC, image):
     LUMEN_MASK = LUMEN_MASK + NUCLEUS_MASK + CYTOPLASM_MASK
 
     result = cv.bitwise_and(imageYCC, imageYCC, mask=LUMEN_MASK)
-
+    
     result = image.copy()
     result[LUMEN_MASK == 255] = [255,255,255]
-    result[NUCLEUS_MASK == 255] = [128,0,128]
+    result[NUCLEUS_MASK == 255] = [255,255,255]
     result[CYTOPLASM_MASK == 255] = [255,105,180]
 
     # cv.imshow("result",np.hstack([imageYCC,image, result]))
     # cv.waitKey()
     # cv.destroyAllWindows()
-
+    result = cv.cvtColor(result, cv.COLOR_YCR_CB2BGR)
     return result
 
 
@@ -54,4 +58,8 @@ if __name__ == "__main__":
     image = cv.imread("images/0+0/03cbe5d39233a65cd7f64a81094ccc54_p_0.tiff", -1)
     
     imageYCC = cv.cvtColor(image, cv.COLOR_BGR2YCR_CB)
-    apply_mask(imageYCC, image)
+    result = apply_mask(imageYCC, image)
+
+    cv.imshow("result",np.hstack([imageYCC,image, result]))
+    cv.waitKey()
+    cv.destroyAllWindows()
