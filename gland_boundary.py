@@ -59,15 +59,6 @@ cnts.pop()
 cnts = [c for c in cnts if (cv.contourArea(c) > 500.0 and cv.contourArea(c) < 7000.0) ]
 cv2.drawContours(image,cnts, -1, (0, 0, 255), thickness=cv.FILLED)
 
-# cv2.fillPoly(image, pts =cnts, color=(255,255,255))
-
-# for cnt in cnts:
-#     cv2.drawContours(image,cnts, -1, (0, 0, 255), 3)
-#     size_elements += cv2.contourArea(cnt)
-#     print(cv2.contourArea(cnt))
-
-
-
 cv2.imshow("Image", image)
 print("size elements total : ", size_elements)
 print("size of pic : ", size)
