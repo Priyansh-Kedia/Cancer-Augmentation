@@ -40,7 +40,6 @@ fig, ax = plt.subplots(1, figsize=(12,8))
 image = apply_mask(imageYCC, image)
 # cv.imshow('once', result)
 
-
 dimensions = image.shape
 
 height= image.shape[0]
